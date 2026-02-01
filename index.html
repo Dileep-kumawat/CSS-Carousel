@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Carousel</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            gap: 2rem;
+            align-items: center;
+            padding: 5rem;
+            background: #181A1B;
+            color: rgb(241, 241, 241);
+        }
+
+        h1 {
+            font-size: 4rem;
+        }
+
+        .carousel {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            overflow: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            anchor-name: --carousel;
+            scroll-maker-group: after;
+        }
+
+        .carousel::scroll-marker-group{
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            align-items: center;
+        }
+
+        .carousel::scroll-marker{
+            content: "";
+            width: 10px;
+            aspect-ratio: 1/1;
+            background-color: #611ec672;
+            border-radius: 50%;
+        }
+
+        .carousel::scroll-marker:target-current{
+            background-color: #611ec6;
+        }
+
+        .carousel::scroll-button(right),
+        .carousel::scroll-button(left) {
+            content: "→";
+            background-color: #611ec6;
+            color: rgb(255, 255, 255);
+            padding: 10px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 1.1rem;
+            position: fixed;
+            position-anchor: --carousel;
+            position-area: right center;
+            transform: translate(-50%);
+        }
+
+        .carousel::scroll-button(right):active,
+        .carousel::scroll-button(left):active {
+            scale: .9;
+        }
+
+        .carousel::scroll-button(right):disabled,
+        .carousel::scroll-button(left):disabled {
+            opacity: .5;
+            scale: 1;
+        }
+
+        .carousel::scroll-button(left) {
+            content: "←";
+            position-area: left center;
+            transform: translate(50%);
+        }
+
+        .carousel::-webkit-scrollbar {
+            display: none;
+        }
+
+        .card {
+            flex: 0 0 20em;
+            scroll-snap-align: start;
+            aspect-ratio: 5/3;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .card img{
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            transition: all .3s linear;
+            cursor: pointer;
+        }
+
+        .card img:hover{
+            scale: 1.1;
+        }
+
+        @media (max-width:900px) {
+            body {
+                padding: 2rem;
+            }
+
+            .card {
+                flex: 0 0 100%;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>CSS only carousel</h1>
+    <div class="carousel">
+        <div class="card">
+            <img src="https://i.pinimg.com/1200x/39/88/cd/3988cdeca4f5939ca14eec43661396c1.jpg" alt="image">
+        </div>
+        <div class="card">
+            <img src="https://i.pinimg.com/1200x/dd/d4/41/ddd441fdebc02863692caf1f9b95b254.jpg" alt="image">
+        </div>
+        <div class="card">
+            <img src="https://i.pinimg.com/736x/a6/bd/4d/a6bd4db7ee7053689bd971b36cbcd1ef.jpg" alt="image">
+        </div>
+        <div class="card">
+            <img src="https://i.pinimg.com/1200x/59/61/38/596138beb239ada8aab67dbb4e288be7.jpg" alt="image">
+        </div>
+        <div class="card">
+            <img src="https://i.pinimg.com/736x/b9/bb/3a/b9bb3aa037c5cd9f0efd2137c15d86c2.jpg" alt="image">
+        </div>
+        <div class="card">
+            <img src="https://i.pinimg.com/736x/69/0b/96/690b964bf1a4f90a28c382225b05bb18.jpg" alt="image">
+        </div>
+        <div class="card">
+            <img src="https://i.pinimg.com/1200x/79/1f/e2/791fe28c111c8183336fa0e9e457ccbb.jpg" alt="image">
+        </div>
+        <div class="card">
+            <img src="https://i.pinimg.com/736x/38/3e/ba/383ebadb9d51ab881124415621d13acb.jpg" alt="image">
+        </div>
+        <div class="card">
+            <img src="https://i.pinimg.com/736x/17/4b/77/174b77c13dd4b36bc8376940135d280b.jpg" alt="image">
+        </div>
+        <div class="card">
+            <img src="https://i.pinimg.com/736x/f7/d6/66/f7d666cd85de6b1e684f20277e57cb32.jpg" alt="image">
+        </div>
+    </div>
+</body>
+
+</html>
